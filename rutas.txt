@@ -1,0 +1,35 @@
+registrar: POST
+http://127.0.0.1:5000/registro_huevos
+
+{
+  "tipo_huevo": "rojo",
+  "tamaño": "A",
+  "cantidad": 50
+}
+
+
+Vender: POST
+http://127.0.0.1:5000/venta_huevos
+
+{
+  "tipo_cliente": "natural",
+  "unidad": "docena",
+  "tipo_huevo": "rojo",
+  "tamaño": "A",
+  "cantidad": 12
+}
+
+http://127.0.0.1:5000/venta_huevos_juridica
+
+{
+  "tipo_cliente": "juridica",
+  "unidad": "cubeta",
+  "tipo_huevo": "rojo",
+  "tamaño": "A",
+  "cantidad": 5
+}
+
+
+consultar stock: GET
+http://127.0.0.1:5000/consultar_stock?tipo_huevo=rojo&tamaño=A
+
