@@ -15,6 +15,9 @@ def verificar_stock(tipo, tamaño, cantidad):
     return True
 
 def registrar_venta(tipo_cliente, unidad, tipo, tamaño, cantidad):
+    huevos_por_unidad = 30 if unidad == "cubeta" else 12
+    cantidad_huevos = int(cantidad) * huevos_por_unidad
+
     # Regla de negocio
     if tipo_cliente == "juridico" and unidad != "cubeta":
         return {"error": "Una persona jurídica solo puede comprar por cubeta."}

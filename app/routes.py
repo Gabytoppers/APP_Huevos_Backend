@@ -1,8 +1,10 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from services import registrar_huevos, registrar_venta, verificar_stock
 from models import huevos_collection
 
 app = Flask(__name__)
+CORS (app)
 
 @app.route('/registro_huevos', methods=['POST'])
 def registrar():
@@ -67,6 +69,30 @@ def stock():
     if not huevo:
         return jsonify({"message": "No hay stock para ese tipo y tamaño"}), 404
     return jsonify({"stock": huevo["cantidad"]})
+
+@app.route('/consultar_inventario', methods=['GET'])
+def consultar_inventario():
+    inventario = huevos_collection.find()
+    resumen = {}
+    total = 0
+
+    for item in inventario:
+        tipo = item.get("tipo", "").lower()
+        tamaño = item.get("tamaño", "").upper()
+        cantidad = item.get("cantidad", 0)
+
+        if tipo not in resumen:
+            resumen[tipo] = []
+
+        resumen[tipo].append({
+            "tamaño": tamaño,
+            "cantidad": cantidad
+        })
+
+        total += cantidad
+
+    resumen["total"] = total
+    return jsonify(resumen), 200
 
 if __name__ == '__main__':
     app.run(debug=True)
