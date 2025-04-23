@@ -1,6 +1,6 @@
 from pymongo import MongoClient
 
-mongo_uri = "mongodb+srv://myAtlasDBUser:FlsztsABiY1luHwL@myatlasclusteredu.jakrico.mongodb.net/?retryWrites=true&w=majority&appName=myAtlasClusterEDU"
+mongo_uri = "mongodb+srv://myAtlasDBUser:FlsztsABiY1luHwL@myatlasclusteredu.jakrico.mongodb.net/granja_db?retryWrites=true&w=majority&appName=myAtlasClusterEDU"
 
 # Crear cliente de MongoDB con desactivación de certificados SSL
 client = MongoClient(mongo_uri, tlsAllowInvalidCertificates=True)
